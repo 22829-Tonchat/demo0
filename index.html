@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติส่วนตัว - น้องคุ้ม</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Krub:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Mitr:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Krub', 'Mitr', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #ffeedd 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 5px solid #ffb03a;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .header-bg {
+            background: linear-gradient(135deg, #ff9f43 0%, #ffb03a 100%);
+            height: 140px;
+            position: relative;
+        }
+
+        .avatar-container {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background-color: #fff;
+            margin: -65px auto 0 auto;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #fff;
+            overflow: hidden;
+        }
+
+        /* รูปจำลองตัวการ์ตูนเด็กผู้ชาย */
+        .avatar-placeholder {
+            font-size: 70px;
+            line-height: 1;
+        }
+
+        .content {
+            padding: 30px 25px;
+        }
+
+        h1 {
+            font-family: 'Fredoka', 'Mitr', sans-serif;
+            color: #d35400;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .nickname {
+            background-color: #ffeaa7;
+            color: #d35400;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .info-section {
+            background-color: #fff9f1;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            border: 1px dashed #ffb03a;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: #4a4a4a;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .icon {
+            font-size: 1.4rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #e67e22;
+            margin-right: 8px;
+        }
+
+        .favorite-food {
+            background: linear-gradient(135deg, #fffae6 0%, #fff3cd 100%);
+            border: 2px solid #ffe17d;
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.2rem;
+            color: #b7791f;
+            font-weight: bold;
+        }
+
+        .food-icon {
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="header-bg"></div>
+        
+        <div class="avatar-container">
+            <div class="avatar-placeholder">👦🏻</div>
+        </div>
+
+        <div class="content">
+            <h1>เด็กชายต้นฉัตร วินิจธรรม</h1>
+            <div class="nickname">ชื่อเล่น: น้องคุ้ม</div>
+
+            <div class="info-section">
+                <div class="info-item">
+                    <span class="icon">📝</span>
+                    <span class="label">ชื่อ-นามสกุล:</span> เด็กชายต้นฉัตร วินิจธรรม
+                </div>
+                <div class="info-item">
+                    <span class="icon">✨</span>
+                    <span class="label">ชื่อเรียกน่ารัก:</span> คุ้ม
+                </div>
+                <div class="info-item">
+                    <span class="icon">สถานะ:</span> ยินดีที่ได้รู้จักครับ!
+                </div>
+            </div>
+
+            <div class="favorite-food">
+                <span class="food-icon">🍗</span>
+                <span>อาหารที่ชอบที่สุด: ไก่ย่าง</span>
+                <span class="food-icon">🔥</span>
+            </div>
+            
+            <footer>ฝากเนื้อฝากตัวด้วยนะครับ</footer>
+        </div>
+    </div>
+
+</body>
+</html>
