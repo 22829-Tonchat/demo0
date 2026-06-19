@@ -1,14 +1,3 @@
-# Let's create the self-contained HTML file according to the user's request.
-# The user wants an HTML code for a student profile card.
-# Specifications:
-# - Self-contained (HTML single file)
-# - Modern card, clean design, primarily Blue theme
-# - Split into clear sections
-# - Skills as pills/tags
-# - Motto included
-# - A4 print support (responsive/styled for print or viewing)
-# - Thai language based on the data provided
-
 html_content = """<!DOCTYPE html>
 <html lang="th">
 <head>
@@ -21,12 +10,11 @@ html_content = """<!DOCTYPE html>
         :root {
             --primary-color: #1e3a8a;
             --primary-light: #3b82f6;
-            --primary-bg: #f0fdf4; /* Light tone, let's use soft ice blue/light blue */
             --bg-color: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #1e293b;
             --text-muted: #64748b;
-            --accent-color: #ef4444; /* for favorite color red if needed or accent */
+            --accent-color: #ef4444;
             --border-color: #e2e8f0;
         }
 
@@ -44,7 +32,7 @@ html_content = """<!DOCTYPE html>
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .profile-card {
@@ -53,18 +41,20 @@ html_content = """<!DOCTYPE html>
             max-width: 800px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
             border: 1px solid var(--border-color);
             position: relative;
+            margin-top: 20px;
         }
 
         /* Top Header Banner */
         .card-header {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 40px 30px;
+            padding: 50px 30px 80px 30px; /* เพิ่ม padding ด้านล่างเพื่อให้มีพื้นที่สำหรับรูปภาพ */
             text-align: center;
             position: relative;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
         }
 
         .school-badge {
@@ -80,10 +70,11 @@ html_content = """<!DOCTYPE html>
         }
 
         .profile-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
             margin-bottom: 5px;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .profile-subtitle {
@@ -92,22 +83,42 @@ html_content = """<!DOCTYPE html>
             font-weight: 400;
         }
 
+        /* จัดวางตำแหน่งรูปภาพให้อยู่กึ่งกลางและทับระหว่าง Header กับเนื้อหา */
+        .profile-avatar-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: -65px auto 0 auto; /* ดึงรูปขึ้นไปด้านบนครึ่งหนึ่ง */
+            z-index: 10;
+        }
+
+        .profile-avatar {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ffffff; /* ขอบสีขาวหนาเพิ่มความเด่น */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+        }
+
         /* Motto Section */
         .motto-container {
             background: #eff6ff;
             border-left: 5px solid var(--primary-light);
-            margin: 25px 30px 15px 30px;
+            margin: 20px 30px 10px 30px;
             padding: 15px 20px;
             border-radius: 0 8px 8px 0;
             font-style: italic;
             color: #1e40af;
             font-weight: 500;
             font-size: 1.05rem;
+            text-align: center;
         }
 
         /* Grid Layout for Content */
         .card-body {
-            padding: 20px 30px 30px 30px;
+            padding: 10px 30px 30px 30px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
@@ -116,6 +127,14 @@ html_content = """<!DOCTYPE html>
         @media (max-width: 600px) {
             .card-body {
                 grid-template-columns: 1fr;
+            }
+            .school-badge {
+                position: static;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+            .card-header {
+                padding: 30px 20px 70px 20px;
             }
         }
 
@@ -221,10 +240,12 @@ html_content = """<!DOCTYPE html>
                 width: 100%;
                 border-radius: 0;
                 page-break-inside: avoid;
+                margin-top: 0;
             }
             .card-header {
                 background: #1e3a8a !important;
                 color: #ffffff !important;
+                border-radius: 0;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -232,6 +253,11 @@ html_content = """<!DOCTYPE html>
                 background: rgba(0, 0, 0, 0.15) !important;
                 color: #ffffff !important;
                 border: 1px solid rgba(255,255,255,0.4);
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .profile-avatar {
+                border: 5px solid #ffffff !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -252,24 +278,24 @@ html_content = """<!DOCTYPE html>
     </style>
 </head>
 <body>
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGS9g2PS3ky-scmKcc2qvKT_hD_8XqplwTRA&s.jpg" alt="คำอธิบายรูปภาพ" width="500" height="300">
+
     <div class="profile-card">
-        <!-- Header Banner -->
         <div class="card-header">
-            <div class="school-badge">โรงเรียน{โรงเรียน} ชั้น {ระดับชั้น}</div>
-            <h1 class="profile-title">{ชื่อ} ({ชื่อเล่น})</h1>
+            <div class="school-badge">โรงเรียนจอมทอง ชั้น ม.3</div>
+            <h1 class="profile-title">ต้นฉัตร วินิจธรรม (คุ้ม)</h1>
             <p class="profile-subtitle">การ์ดประวัติส่วนตัวนักเรียน</p>
         </div>
 
-        <!-- Motto Section -->
-        <div class="motto-container">
-            คติประจำใจ: “{คติประจำใจ}”
+        <div class="profile-avatar-container">
+            <img class="profile-avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGS9g2PS3ky-scmKcc2qvKT_hD_8XqplwTRA&s.jpg" alt="รูปภาพโปรไฟล์">
         </div>
 
-        <!-- Main Content Body -->
+        <div class="motto-container">
+            คติประจำใจ: “อย่าไปเครียดกับชีวิต”
+        </div>
+
         <div class="card-body">
             
-            <!-- Section 1: ข้อมูลทั่วไป -->
             <div class="section-box">
                 <h2 class="section-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -278,32 +304,31 @@ html_content = """<!DOCTYPE html>
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="info-label">วันเกิด</span>
-                        <span class="info-value">{วันเกิด}</span>
+                        <span class="info-value">10 ตุลาคม 2554</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">เพศ</span>
-                        <span class="info-value">{เพศ}</span>
+                        <span class="info-value">ชาย</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">กรุ๊ปเลือด</span>
-                        <span class="info-value">{กรุ๊ปเลือด}</span>
+                        <span class="info-value">AB</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ราศี</span>
-                        <span class="info-value">{ราศี}</span>
+                        <span class="info-value">กันย์</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ส่วนสูง</span>
-                        <span class="info-value">{ส่วนสูง} ซม.</span>
+                        <span class="info-value">180 ซม.</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ภูมิลำเนา</span>
-                        <span class="info-value">{ภูมิลำเนา}</span>
+                        <span class="info-value">ลำพูน</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section 2: การเรียนและกิจกรรม -->
             <div class="section-box">
                 <h2 class="section-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path></svg>
@@ -312,24 +337,23 @@ html_content = """<!DOCTYPE html>
                 <div class="list-items">
                     <div class="list-item">
                         <span class="info-label">วิชาที่ชอบ</span>
-                        <span class="info-value" style="color: #16a34a;">{วิชาที่ชอบ}</span>
+                        <span class="info-value" style="color: #16a34a;">สุขศึกษา</span>
                     </div>
                     <div class="list-item">
                         <span class="info-label">วิชาที่ยาก</span>
-                        <span class="info-value" style="color: #dc2626;">{วิชาที่ยาก}</span>
+                        <span class="info-value" style="color: #dc2626;">ศิลปะ</span>
                     </div>
                     <div class="list-item">
                         <span class="info-label">ชมรม/กิจกรรม</span>
-                        <span class="info-value">{ชมรม_กิจกรรม}</span>
+                        <span class="info-value">ชมรม</span>
                     </div>
                     <div class="list-item">
                         <span class="info-label">เพื่อนสนิท</span>
-                        <span class="info-value">{เพื่อนสนิท}</span>
+                        <span class="info-value">ลลิตา</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section 3: ไลฟ์สไตล์และความชอบ -->
             <div class="section-box">
                 <h2 class="section-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
@@ -338,31 +362,30 @@ html_content = """<!DOCTYPE html>
                 <div class="info-grid">
                     <div class="info-item">
                         <span class="info-label">อาหารโปรด</span>
-                        <span class="info-value">{อาหารโปรด}</span>
+                        <span class="info-value">ก๋วยเตี๋ยว</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">สีโปรด</span>
                         <span class="info-value" style="display: inline-flex; align-items: center; gap: 5px;">
                             <span style="display:inline-block; width: 12px; height: 12px; background-color: red; border-radius: 50%;"></span>
-                            {สีโปรด}
+                            แดง
                         </span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">งานอดิเรก</span>
-                        <span class="info-value">{งานอดิเรก}</span>
+                        <span class="info-value">เล่นเกม</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">กีฬา</span>
-                        <span class="info-value">{กีฬา}</span>
+                        <span class="info-value">บาสเกตบอล</span>
                     </div>
                     <div class="info-item" style="grid-column: span 2;">
                         <span class="info-label">เพลงที่ชอบ</span>
-                        <span class="info-value">วง {เพลงที่ชอบ}</span>
+                        <span class="info-value">วง คาราบาว</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Section 4: ความฝันและเป้าหมาย -->
             <div class="section-box">
                 <h2 class="section-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
@@ -370,11 +393,10 @@ html_content = """<!DOCTYPE html>
                 </h2>
                 <div class="info-item" style="background: #fdf2f8; padding: 15px; border-radius: 8px; border: 1px dashed #fbcfe8;">
                     <span class="info-label" style="color: #db2777; font-weight: 600;">ความฝัน / อาชีพที่อยากเป็น</span>
-                    <span class="info-value" style="font-size: 1.2rem; color: #9d174d; margin-top: 5px;">✨ {ความฝัน_อาชีพ}</span>
+                    <span class="info-value" style="font-size: 1.2rem; color: #9d174d; margin-top: 5px;">✨ ผู้ว่างงานที่ร่ำรวย</span>
                 </div>
             </div>
 
-            <!-- Section 5: ทักษะความสามารถ (Pills/Tags) -->
             <div class="section-box skills-container">
                 <h2 class="section-title">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
@@ -394,34 +416,7 @@ html_content = """<!DOCTYPE html>
 </html>
 """
 
-# Format data into placeholders
-formatted_html = html_content.format(
-    ชื่อ="ต้นฉัตร วินิจธรรม",
-    ชื่อเล่น="คุ้ม",
-    วันเกิด="10 ตุลาคม 2554",
-    เพศ="ชาย",
-    กรุ๊ปเลือด="AB",
-    ราศี="กันย์",
-    ภูมิลำเนา="ลำพูน",
-    ส่วนสูง="180",
-    วิชาที่ชอบ="สุขศึกษา",
-    วิชาที่ยาก="ศิลปะ",
-    เพื่อนสนิท="ลลิตา",
-    ชมรม_กิจกรรม="ชมรม",
-    ความฝัน_อาชีพ="ผู้ว่างงานที่ร่ำรวย",
-    อาหารโปรด="ก๋วยเตี๋ยว",
-    สีโปรด="แดง",
-    งานอดิเรก="เล่นเกม",
-    กีฬา="บาสเกตบอล",
-    เพลงที่ชอบ="คาราบาว",
-    คติประจำใจ="อย่าไปเครียดกับชีวิต",
-    โรงเรียน="จอมทอง",
-    ระดับชั้น="ม.3"
-)
-
-# Save the code to a file
+# บันทึกซอร์สโค้ดลงในไฟล์โดยตรง ไม่ต้องกังวลเรื่องปีกกาขัดแย้งกัน
 file_name = "student_profile_card.html"
 with open(file_name, "w", encoding="utf-8") as file:
-    file.write(formatted_html)
-
-print(f"File created successfully: {file_name}")
+    file.write(html_content)
